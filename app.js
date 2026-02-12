@@ -1,0 +1,183 @@
+const $ = (id) => document.getElementById(id);
+
+const pages = {
+    p1: $("page-1"),
+    p2: $("page-2"),
+    p3: $("page-3"),
+    p4: $("page-4"),
+    done: $("page-done"),
+};
+
+function showPage(key) {
+    Object.values(pages).forEach(el => el.classList.add("hidden"));
+    pages[key].classList.remove("hidden");
+}
+
+/* --------------------------
+   CONFIG: Questions + Images
+--------------------------- */
+
+// Page 2: 2 MCQ + 1 text
+const P2 = {
+    q1: { id: "p2_q1", mount: "p2q1", text: "date vibe", choices: ["Dinner + walk", "Movie + snacks", "Cafe + photos", "Home date", "Surprise 😈"] },
+    q2: { id: "p2_q2", mount: "p2q2", text: "gift", choices: ["Flowers 🌷", "Chocolate 🍫", "Perfume 🧴", "Teddy 🧸", "All 😏"] },
+    textId: "p2_q3_text"
+};
+
+// Page 3: 5 MCQ
+const P3 = [
+    { id: "p3_q1", mount: "p3q1", choices: ["Aasa Orave", "Oru Maalai", "Unakkagathane", "Kadhal Kanave", "Your choice 😌"] },
+    { id: "p3_q2", mount: "p3q2", choices: ["Long calls", "Gaming together", "Cooking date", "Travel", "Just cuddles 😭"] },
+    { id: "p3_q3", mount: "p3q3", choices: ["Ice cream", "Cake", "Brownie", "Gulab jamun", "Anything you feed me 😏"] },
+    { id: "p3_q4", mount: "p3q4", choices: ["Protective", "Funny", "Romantic", "Calm", "All modes 😈"] },
+    { id: "p3_q5", mount: "p3q5", choices: ["Trip plan", "Dinner plan", "Movie plan", "Surprise plan", "You decide everything 👑"] },
+];
+
+// Page 4 images (YOU MUST put these files in /images/)
+const IMAGES = [
+    { src: "images/photo1.jpeg", caption: "Us 💗" },
+    { src: "images/photo2.jpeg", caption: "My favorite day" },
+    { src: "images/photo3.jpeg", caption: "Cuties 😌" },
+    { src: "images/photo4.jpeg", caption: "Always you" },
+];
+
+/* --------------------------
+   State (answers)
+--------------------------- */
+let answers = {}; // { [id]: value }
+
+/* --------------------------
+   Helpers: MCQ render
+--------------------------- */
+function renderChoices(mountId, qid, choices) {
+    const mount = $(mountId);
+    mount.innerHTML = "";
+
+    choices.forEach((label) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "choiceBtn";
+        btn.textContent = label;
+
+        if (answers[qid] === label) btn.classList.add("selected");
+
+        btn.addEventListener("click", () => {
+            answers[qid] = label;
+            [...mount.querySelectorAll(".choiceBtn")].forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+        });
+
+        mount.appendChild(btn);
+    });
+}
+
+function isAnswered(qid) {
+    return Boolean(answers[qid] && String(answers[qid]).trim().length);
+}
+
+/* --------------------------
+   Page 1 logic
+--------------------------- */
+let noCount = 0;
+
+$("p1Yes").addEventListener("click", () => {
+    // reset for fresh run
+    answers = {};
+    noCount = 0;
+    $("p1Hint").textContent = "";
+
+    // render page 2 questions
+    renderChoices(P2.q1.mount, P2.q1.id, P2.q1.choices);
+    renderChoices(P2.q2.mount, P2.q2.id, P2.q2.choices);
+    $("p2q3text").value = "";
+
+    showPage("p2");
+});
+
+$("p1No").addEventListener("click", () => {
+    noCount += 1;
+    const messages = ["Wrong button 😌", "Try again 😏", "Come onnn 🥺", "No is disabled today 💗", "Okay now press YES 😂"];
+    $("p1Hint").textContent = messages[Math.min(noCount - 1, messages.length - 1)];
+});
+
+/* --------------------------
+   Page 2 nav + validation
+--------------------------- */
+$("p2Back").addEventListener("click", () => showPage("p1"));
+
+$("p2Next").addEventListener("click", () => {
+    const hint = $("p2Hint");
+    hint.textContent = "";
+
+    const typed = $("p2q3text").value.trim();
+    answers[P2.textId] = typed;
+
+    if (!isAnswered(P2.q1.id) || !isAnswered(P2.q2.id) || !isAnswered(P2.textId)) {
+        hint.textContent = "Answer all 3 questions 👀";
+        return;
+    }
+
+    // render page 3
+    P3.forEach(q => renderChoices(q.mount, q.id, q.choices));
+    showPage("p3");
+});
+
+/* --------------------------
+   Page 3 nav + validation
+--------------------------- */
+$("p3Back").addEventListener("click", () => showPage("p2"));
+
+$("p3Next").addEventListener("click", () => {
+    const hint = $("p3Hint");
+    hint.textContent = "";
+
+    const allOk = P3.every(q => isAnswered(q.id));
+    if (!allOk) {
+        hint.textContent = "Answer all 5 questions 👀";
+        return;
+    }
+
+    renderGallery();
+    showPage("p4");
+});
+
+/* --------------------------
+   Page 4: Gallery render
+--------------------------- */
+function renderGallery() {
+    const g = $("gallery");
+    g.innerHTML = "";
+
+    IMAGES.forEach((img) => {
+        const card = document.createElement("div");
+        card.className = "photo";
+
+        const image = document.createElement("img");
+        image.src = img.src;
+        image.alt = img.caption;
+
+        const cap = document.createElement("div");
+        cap.className = "caption";
+        cap.textContent = img.caption;
+
+        card.appendChild(image);
+        card.appendChild(cap);
+        g.appendChild(card);
+    });
+}
+
+$("p4Back").addEventListener("click", () => showPage("p3"));
+
+$("p4Done").addEventListener("click", () => {
+    localStorage.setItem("valentineAnswers", JSON.stringify({
+        answers,
+        savedAt: new Date().toISOString(),
+    }));
+    $("p4Hint").textContent = "Saved ✅";
+    showPage("done");
+});
+
+$("restart").addEventListener("click", () => {
+    answers = {};
+    showPage("p1");
+});

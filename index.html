@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Valentine</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main class="bg">
+
+        <!-- PAGE 1 -->
+        <section class="card" id="page-1">
+            <div class="bear">🐻</div>
+            <h1 class="title">Gundu Kuttieee, will you be my Valentine? 🥺💗</h1>
+
+            <div class="row">
+                <button class="btn primary" id="p1Yes">Yes 💖</button>
+                <button class="btn ghost" id="p1No">No 🙃</button>
+            </div>
+
+            <p class="hint" id="p1Hint"></p>
+        </section>
+
+        <!-- PAGE 2 -->
+        <section class="card hidden" id="page-2">
+            <h2 class="title">Page 2 💌</h2>
+
+            <div class="qpanel">
+                <p class="qTitle">1) Choose our date vibe:</p>
+                <div class="choices" id="p2q1"></div>
+            </div>
+
+            <div class="qpanel">
+                <p class="qTitle">2) Your ideal gift:</p>
+                <div class="choices" id="p2q2"></div>
+            </div>
+
+            <div class="qpanel">
+                <p class="qTitle">3) Type your answer:</p>
+                <input class="input" id="p2q3text" placeholder="Type here..." />
+            </div>
+
+            <p class="hint" id="p2Hint"></p>
+
+            <div class="row">
+                <button class="btn ghost" id="p2Back">Back</button>
+                <button class="btn primary" id="p2Next">Next ➜</button>
+            </div>
+        </section>
+
+        <!-- PAGE 3 -->
+        <section class="card hidden" id="page-3">
+            <h2 class="title">Page 3 💞</h2>
+
+            <div class="qpanel">
+                <p class="qTitle">1) Pick our song:</p>
+                <div class="choices" id="p3q1"></div>
+            </div>
+
+            <div class="qpanel">
+                <p class="qTitle">2) Best couple activity:</p>
+                <div class="choices" id="p3q2"></div>
+            </div>
+
+            <div class="qpanel">
+                <p class="qTitle">3) Your favorite sweet:</p>
+                <div class="choices" id="p3q3"></div>
+            </div>
+
+            <div class="qpanel">
+                <p class="qTitle">4) The vibe you want from me:</p>
+                <div class="choices" id="p3q4"></div>
+            </div>
+
+            <div class="qpanel">
+                <p class="qTitle">5) Our next plan:</p>
+                <div class="choices" id="p3q5"></div>
+            </div>
+
+            <p class="hint" id="p3Hint"></p>
+
+            <div class="row">
+                <button class="btn ghost" id="p3Back">Back</button>
+                <button class="btn primary" id="p3Next">Next ➜</button>
+            </div>
+        </section>
+
+        <!-- PAGE 4 (YOUR IMAGES) -->
+        <section class="card hidden" id="page-4">
+            <h2 class="title">Page 4 📸</h2>
+            <p class="text">These are my favorite memories with you 💗</p>
+
+            <div class="gallery" id="gallery"></div>
+
+            <div class="row">
+                <button class="btn ghost" id="p4Back">Back</button>
+                <button class="btn primary" id="p4Done">Done ✅</button>
+            </div>
+
+            <p class="hint" id="p4Hint"></p>
+        </section>
+
+        <!-- DONE SCREEN -->
+        <section class="card hidden" id="page-done">
+            <h2 class="title">Saved 💌</h2>
+            <p class="text">Her answers are saved in the browser (localStorage).</p>
+            <p class="text">Next step: deploy to a shareable link.</p>
+
+            <div class="row">
+                <button class="btn primary" id="restart">Restart 🔁</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
