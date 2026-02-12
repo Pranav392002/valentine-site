@@ -44,6 +44,31 @@ const IMAGES = [
 /* --------------------------
    State (answers)
 --------------------------- */
+const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwC0qw9JZ3JeZvoR4aJGmuQA3RjF0z2H84CT_X9kZaqT7mxzHyDkrBLSaTJcL795QiM5Q/exec";
+
+function getSessionId() {
+  const key = "valentineSessionId";
+  let id = localStorage.getItem(key);
+  if (!id) {
+    id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(16).slice(2);
+    localStorage.setItem(key, id);
+  }
+  return id;
+}
+
+// Fire-and-forget (Apps Script often doesn't send CORS headers)
+function sendAnswersToGoogleSheet(payload) {
+  try {
+    fetch(SHEET_WEBHOOK_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    // ignore (we still keep localStorage)
+  }
+}
 let answers = {}; // { [id]: value }
 
 /* --------------------------
@@ -169,12 +194,21 @@ function renderGallery() {
 $("p4Back").addEventListener("click", () => showPage("p3"));
 
 $("p4Done").addEventListener("click", () => {
-    localStorage.setItem("valentineAnswers", JSON.stringify({
-        answers,
-        savedAt: new Date().toISOString(),
-    }));
-    $("p4Hint").textContent = "Saved ✅";
-    showPage("done");
+  const payload = {
+    sessionId: getSessionId(),
+    answers,
+    savedAt: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+  };
+
+  // Save locally (backup)
+  localStorage.setItem("valentineAnswers", JSON.stringify(payload));
+
+  // Send to your Google Sheet
+  sendAnswersToGoogleSheet(payload);
+
+  $("p4Hint").textContent = "Saved ✅";
+  showPage("done");
 });
 
 $("restart").addEventListener("click", () => {
