@@ -26,19 +26,19 @@ const P2 = {
 
 // Page 3: 5 MCQ
 const P3 = [
-    { id: "p3_q1", mount: "p3q1", choices: ["Aasa Orave", "Oru Maalai", "Unakkagathane", "Kadhal Kanave", "Your choice 😌"] },
-    { id: "p3_q2", mount: "p3q2", choices: ["Long calls", "Gaming together", "Cooking date", "Travel", "Just cuddles 😭"] },
-    { id: "p3_q3", mount: "p3q3", choices: ["Ice cream", "Cake", "Brownie", "Gulab jamun", "Anything you feed me 😏"] },
-    { id: "p3_q4", mount: "p3q4", choices: ["Protective", "Funny", "Romantic", "Calm", "All modes 😈"] },
-    { id: "p3_q5", mount: "p3q5", choices: ["Trip plan", "Dinner plan", "Movie plan", "Surprise plan", "You decide everything 👑"] },
+    { id: "p3_q1", mount: "p3q1", choices: ["When you grab me firmly by the waist / hips", "When you kiss my neck slowly from behind", "When you whisper dirty things in my ear", "When you look at me like you want to devour me right now"] },
+    { id: "p3_q2", mount: "p3q2", choices: ["Long lazy morning sex followed by breakfast in bed", "Shower together… and stay there way longer than necessary", "Strip down and just touch/explore each other for hours without rushing", "Role-play something we've never tried before"] },
+    { id: "p3_q3", mount: "p3q3", choices: ["Neck / collarbone", "Inner thighs", "Lower back / just above my ass", "Nipples / chest"] },
+    { id: "p3_q4", mount: "p3q4", choices: ["Sweet & romantic (slow passionate love-making with lots of eye contact)", "A bit naughty (fingering / oral in a semi-public place)", "Pretty rough (hair-pulling, spanking, being pinned down)", "All modes 😈"] },
+    { id: "p3_q5", mount: "p3q5", choices: ["Take your clothes off slowly while I watch", "Get on your knees and kiss my Pussy", "Hands behind your back, don't move until I say", "Lick my Feet"] },
 ];
 
 // Page 4 images (YOU MUST put these files in /images/)
 const IMAGES = [
-    { src: "images/photo1.jpeg", caption: "Us 💗" },
+    { src: "images/photo1.jpeg", caption: "Neeyum Naanum 💗" },
     { src: "images/photo2.jpeg", caption: "My favorite day" },
     { src: "images/photo3.jpeg", caption: "Cuties 😌" },
-    { src: "images/photo4.jpeg", caption: "Always you" },
+    { src: "images/photo4.jpeg", caption: "Epomey Neetha enaku" },
 ];
 
 /* --------------------------
