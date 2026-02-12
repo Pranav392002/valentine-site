@@ -203,6 +203,7 @@ $("p4Done").addEventListener("click", () => {
 
   // Save locally (backup)
   localStorage.setItem("Valentine Answers", JSON.stringify(payload));
+    console.log("Sending payload:", payload);
 
   // Send to your Google Sheet
   sendAnswersToGoogleSheet(payload);
