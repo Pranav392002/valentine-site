@@ -2,125 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Valentine</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Valentine</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <main class="bg">
+  <main class="bg">
 
-        <!-- PAGE 1 -->
-        <section class="card" id="page-1">
-            <div class="bear">🐻</div>
-            <h1 class="title">Oii Gundu Kuttieee, will you be my Valentine? 😁💗</h1>
+    <!-- PAGE 1 -->
+    <section class="card" id="page-1">
+      <div class="bear">🐻</div>
+      <h1 class="title">Gundu Kuttieee, will you be my Valentine? 🥺💗</h1>
 
-            <div class="row">
-                <button class="btn primary" id="p1Yes">Yes 💋</button>
-                <button class="btn ghost" id="p1No">No 🤨🔪</button>
-            </div>
+      <div class="row">
+        <button class="btn primary" id="p1Yes">Yes 💖</button>
+        <button class="btn ghost" id="p1No">No 🙃</button>
+      </div>
 
-            <p class="hint" id="p1Hint"></p>
-        </section>
+      <p class="hint" id="p1Hint"></p>
+    </section>
 
-        <!-- PAGE 2 -->
-        <section class="card hidden" id="page-2">
-            <h2 class="title">ne Yes sonna naala ennoda Love Questions ku la ne answer pannanum also itha screenshot edu illina ennala answer paaka mudiyaathu becz na avalo arivaali illa coding la  😜 💌</h2>
+    <!-- PAGE 2 (POEM) -->
+    <section class="card hidden poemCard" id="page-2">
+      <div class="poemHeader">
+        <div class="mini">💌</div>
+        <h2 class="title">For You</h2>
+        <p class="sub">A little piece of my heart, in words.</p>
+      </div>
 
-            <div class="qpanel">
-                <p class="qTitle">1) Choose our date vibe:</p>
-                <div class="choices" id="p2q1"></div>
-            </div>
+      <div class="poemBox">
+        <h3 class="poemTitle">My Love Poem</h3>
 
-            <div class="qpanel">
-                <p class="qTitle">2) Your ideal gift:</p>
-                <div class="choices" id="p2q2"></div>
-            </div>
+        <p class="poemText" id="poemText">
+          You’re the calm in my chaos,<br />
+          the soft in my storm,<br />
+          the reason my ordinary days<br />
+          feel like something warm.<br /><br />
 
-            <div class="qpanel">
-                <p class="qTitle">3) unnoda Manifest enna...?:</p>
-                <input class="input" id="p2q3text" placeholder="Type here..." />
-            </div>
+          If love had a language,<br />
+          it would sound like you.<br />
+          And if home had a meaning,<br />
+          it would be us too. 💗
+        </p>
+      </div>
 
-            <p class="hint" id="p2Hint"></p>
+      <div class="row">
+        <button class="btn ghost" id="p2Back">Back</button>
+        <button class="btn primary" id="p2Next">Next ➜</button>
+      </div>
+    </section>
 
-            <div class="row">
-                <button class="btn ghost" id="p2Back">Back</button>
-                <button class="btn primary" id="p2Next">Next ➜</button>
-            </div>
-        </section>
+    <!-- PAGE 4 (YOUR IMAGES) -->
+    <section class="card hidden" id="page-4">
+      <h2 class="title">Our Memories 📸</h2>
+      <p class="text">These are my favorite memories with you 💗</p>
 
-        <!-- PAGE 3 -->
-        <section class="card hidden" id="page-3">
-            <h2 class="title"> Gaaju Questions 🤪🤪🤪 </h2>
+      <div class="gallery" id="gallery"></div>
 
-            <div class="qpanel">
-                <p class="qTitle">1) What instantly turns you on the most when we're together?:</p>
-                <div class="choices" id="p3q1"></div>
-            </div>
+      <div class="row">
+        <button class="btn ghost" id="p4Back">Back</button>
+        <button class="btn primary" id="p4Done">Done ✅</button>
+      </div>
 
-            <div class="qpanel">
-                <p class="qTitle">2) If we had the whole apartment to ourselves for 24 hours with zero plans, what's the
-                    first thing you'd want us to do?:</p>
-                <div class="choices" id="p3q2"></div>
-            </div>
+      <p class="hint" id="p4Hint"></p>
+    </section>
 
-            <div class="qpanel">
-                <p class="qTitle">3) What's your favorite place on my body that you love to kiss / bite / lick the most?
-                </p>
-                <div class="choices" id="p3q3"></div>
-            </div>
+    <!-- DONE SCREEN -->
+    <section class="card hidden" id="page-done">
+      <h2 class="title">Saved 💌</h2>
+      <p class="text">Done! 💗</p>
 
-            <div class="qpanel">
-                <p class="qTitle">4) On a scale of romantic to filthy, how would you describe the dirtiest fantasy
-                    you've had about us recently?</p>
-                <div class="choices" id="p3q4"></div>
-            </div>
+      <div class="row">
+        <button class="btn primary" id="restart">Restart 🔁</button>
+      </div>
+    </section>
 
-            <div class="qpanel">
-                <p class="qTitle">5) If I told you to take complete control of me tonight, what would be your first
-                    three commands?</p>
-                <div class="choices" id="p3q5"></div>
-            </div>
+  </main>
 
-            <p class="hint" id="p3Hint"></p>
-
-            <div class="row">
-                <button class="btn ghost" id="p3Back">Back</button>
-                <button class="btn primary" id="p3Next">Next ➜</button>
-            </div>
-        </section>
-
-        <!-- PAGE 4 (YOUR IMAGES) -->
-        <section class="card hidden" id="page-4">
-            <h2 class="title">Page 4 📸</h2>
-            <p class="text">These are my favorite memories with you 💗</p>
-
-            <div class="gallery" id="gallery"></div>
-
-            <div class="row">
-                <button class="btn ghost" id="p4Back">Back</button>
-                <button class="btn primary" id="p4Done">Done ✅</button>
-            </div>
-
-            <p class="hint" id="p4Hint"></p>
-        </section>
-
-        <!-- DONE SCREEN -->
-        <section class="card hidden" id="page-done">
-            <h2 class="title">Saved 💌</h2>
-            <p class="text">Her answers are saved in the browser (localStorage).</p>
-            <p class="text">Next step: deploy to a shareable link.</p>
-
-            <div class="row">
-                <button class="btn primary" id="restart">Restart 🔁</button>
-            </div>
-        </section>
-
-    </main>
-
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>
